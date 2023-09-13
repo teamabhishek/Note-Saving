@@ -1,0 +1,23 @@
+mat-toolbar{
+  background-color:cornflowerblue;
+  color:cornsilk;
+
+}
+a{
+  text-decoration: none;
+  color: white;
+  margin: 10%;
+  padding: 10%;
+}
+.gap {
+  margin-right: 20px;
+}
+.space{
+  flex: auto;
+}
+.heading
+{
+font-family: 'Corinthia', cursive;
+font-size: 3vw;
+
+}

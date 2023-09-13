@@ -1,0 +1,58 @@
+<div class="container-fluid">
+<mat-card>
+
+  <mat-spinner *ngIf="isL"></mat-spinner>
+   <!-- <h3> <b>Search </b></h3> -->
+
+  <div  appearance="fill" style="width: 70%;
+  cursor: pointer;">
+  <table style="width: 100%; ">
+
+    <tr> <td>
+      <i class="fa fa-search"></i>
+    </td>
+      <td colspan="6">
+    <input type="text"  class="form-control"   placeholder="Enter Keyword for filter"
+      style="padding: 6px;
+     border:blue; justify-content: center; display: flex;" [(ngModel)]="searchedKeyword"></td>
+     <td>
+     <button type="submit" class="btn btn-primary btn-md" >Search</button>
+    </td>
+     </tr>
+   </table>
+  </div>
+  <p class="mat-body-1" *ngIf = "postList.length ==0 && !isL" style="text-align: center;"><b>NO POSTS FOUND</b></p>
+  <br><br>
+<mat-accordion multi="true" *ngIf = "postList.length > 0 && !isL">
+<mat-expansion-panel  *ngFor="let i of postList  | filter:searchedKeyword">
+  <mat-expansion-panel-header>
+    {{i.title}}
+  </mat-expansion-panel-header >
+  <div>
+  <p class="mat-body-1" style="text-align: right;">{{i.date | date: 'shortDate' }}</p>
+  <div class="image-view">
+    <img [src]="i.imagePath" [alt]="i.title" >
+  </div>
+  <br><br>
+  <h1 class="mat-body-1" >{{i.content}}</h1>
+</div>
+
+  <mat-action-row *ngIf="isAuthenticated && userId == i.creator">
+    <a mat-button color="primary" [routerLink]="['/edit', i.id]"><mat-icon>mode_edit</mat-icon>Edit</a>
+    <button mat-button color="warn" (click)="onDel(i.id)" onclick="return confirm('Are you sure you want to delete this item')"><mat-icon>delete</mat-icon>Delete</button>
+  </mat-action-row>
+</mat-expansion-panel>
+
+</mat-accordion>
+<br><br>
+<mat-paginator style-paginator showFirstLastButtons  [length]="length" [pageSize]="postPerPage" [pageSizeOptions]="pageSizeOption"
+ (page)="onPageChange($event)" *ngIf = "postList.length > 0 "></mat-paginator>
+
+</mat-card>
+<div>
+
+
+
+
+
+
