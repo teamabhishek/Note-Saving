@@ -1,7 +1,7 @@
 {
   "env":
   {
-    "mong_atlas_password": "arnabi",
+    "mong_atlas_password": "abhishek",
     "jwt_key":"secret_long_string"
   }
 }
